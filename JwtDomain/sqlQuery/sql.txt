@@ -1,0 +1,22 @@
+﻿INSERT  dbo.[AppUsers] ([AppUserId], [UserName], [Password]) VALUES (N'4a1947ec-099c-4532-8105-64cf8c8b4b94', N'PSheriff', N'P@ssw0rd')
+GO
+INSERT  dbo.[AppUsers] ([AppUserId], [UserName], [Password]) VALUES (N'898c9784-e31f-4f37-927f-a157eb7ca215', N'BJones', N'P@ssw0rd')
+GO
+INSERT [AppUserClaims] ([AppUserClaimId], [AppUserId], [ClaimType], [ClaimValue]) VALUES (N'a3530e23-bea8-4e68-807e-86db9e80db11', N'898c9784-e31f-4f37-927f-a157eb7ca215', N'CanAddProduct', N'false')
+GO
+INSERT [AppUserClaims] ([AppUserClaimId], [AppUserId], [ClaimType], [ClaimValue]) VALUES (N'cbb1b376-e315-400f-8457-6d0753c24f0f', N'4a1947ec-099c-4532-8105-64cf8c8b4b94', N'CanAccessProducts', N'true')
+GO
+INSERT [AppUserClaims] ([AppUserClaimId], [AppUserId], [ClaimType], [ClaimValue]) VALUES (N'408b006c-e76e-4503-aee9-1985a4a3786a', N'4a1947ec-099c-4532-8105-64cf8c8b4b94', N'CanAddProduct', N'true')
+GO
+INSERT [AppUserClaims] ([AppUserClaimId], [AppUserId], [ClaimType], [ClaimValue]) VALUES (N'ec624240-6a3a-4557-bbed-4aca1dddbc6b', N'4a1947ec-099c-4532-8105-64cf8c8b4b94', N'CanSaveProduct', N'true')
+GO
+INSERT [AppUserClaims] ([AppUserClaimId], [AppUserId], [ClaimType], [ClaimValue]) VALUES (N'4eb3c52b-1fd3-4f6e-8631-d99a4be7f3ae', N'4a1947ec-099c-4532-8105-64cf8c8b4b94', N'CanAccessCategories', N'true')
+GO
+INSERT [AppUserClaims] ([AppUserClaimId], [AppUserId], [ClaimType], [ClaimValue]) VALUES (N'dea74b80-defb-4a73-9100-53ecd98b0b88', N'4a1947ec-099c-4532-8105-64cf8c8b4b94', N'CanAddCategory', N'true')
+GO
+INSERT [AppUserClaims] ([AppUserClaimId], [AppUserId], [ClaimType], [ClaimValue]) VALUES (N'71baa2ad-e169-42d1-b913-10123ac68074', N'898c9784-e31f-4f37-927f-a157eb7ca215', N'CanAccessProducts', N'true')
+GO
+INSERT [AppUserClaims] ([AppUserClaimId], [AppUserId], [ClaimType], [ClaimValue]) VALUES (N'057f4ecc-8245-4234-8a9d-5a63bb3df02c', N'898c9784-e31f-4f37-927f-a157eb7ca215', N'CanAddCategory', N'true')
+GO
+INSERT [AppUserClaims] ([AppUserClaimId], [AppUserId], [ClaimType], [ClaimValue]) VALUES (N'0d8004ca-a9e1-4f25-b9d9-e7d1e2ec3283', N'898c9784-e31f-4f37-927f-a157eb7ca215', N'CanAccessCategories', N'true')
+GO
