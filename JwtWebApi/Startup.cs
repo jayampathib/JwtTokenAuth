@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using JwtDomain;
 using Microsoft.Extensions.Configuration;
+using JwtDomain.Repo;
+using JwtWebApi.BLL;
 
 namespace JwtWebApi
 {
@@ -26,6 +28,9 @@ namespace JwtWebApi
             services.AddMvc();
             services.AddDbContext<JwtModuleDbContext>(opt => 
                     opt.UseSqlServer(_IConfiguration.GetConnectionString("sqlConnection")));
+
+            services.AddTransient<IAppUserRepo, AppUserRepo>();
+            services.AddTransient<ISecurityManager, SecurityManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
