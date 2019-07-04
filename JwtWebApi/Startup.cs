@@ -11,6 +11,7 @@ using JwtDomain;
 using Microsoft.Extensions.Configuration;
 using JwtDomain.Repo;
 using JwtWebApi.BLL;
+using JwtWebApi.Models;
 
 namespace JwtWebApi
 {
@@ -42,6 +43,19 @@ namespace JwtWebApi
             }
             app.UseMvc(opt => opt.MapRoute("Default", "{controller}/{action}/{id?}"));
      
+        }
+        public JwtSettings GetJwtSettings()
+        {
+            JwtSettings settings = new JwtSettings();
+
+            settings.Key = _IConfiguration["JwtSettings:key"];
+            settings.Audience = _IConfiguration["JwtSettings:audience"];
+            settings.Issuer = _IConfiguration["JwtSettings:issuer"];
+            settings.MinutesToExpiration =
+             Convert.ToInt32(
+                _IConfiguration["JwtSettings:minutesToExpiration"]);
+
+            return settings;
         }
     }
 }
