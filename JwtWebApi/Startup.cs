@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using JwtDomain.Repo;
 using JwtWebApi.BLL;
 using JwtWebApi.Models;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace JwtWebApi
 {
@@ -25,7 +27,34 @@ namespace JwtWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
-        {
+        {      
+            // Get JWT Token Settings from JwtSettings.json file
+            JwtSettings settings = GetJwtSettings();
+
+            // Register Jwt as the Authentication service
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "JwtBearer";
+                options.DefaultChallengeScheme = "JwtBearer";
+            })
+            .AddJwtBearer("JwtBearer", jwtBearerOptions =>
+            {
+                jwtBearerOptions.TokenValidationParameters =
+                      new TokenValidationParameters
+                      {
+                          ValidateIssuerSigningKey = true,
+                          IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Key)),
+                          ValidateIssuer = true,
+                          ValidIssuer = settings.Issuer,
+
+                          ValidateAudience = true,
+                          ValidAudience = settings.Audience,
+
+                          ValidateLifetime = true,
+                          ClockSkew = TimeSpan.FromMinutes(settings.MinutesToExpiration)
+                      };
+            });
+
             services.AddMvc();
             services.AddDbContext<JwtModuleDbContext>(opt => 
                     opt.UseSqlServer(_IConfiguration.GetConnectionString("sqlConnection")));
@@ -41,6 +70,7 @@ namespace JwtWebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseMvc(opt => opt.MapRoute("Default", "{controller}/{action}/{id?}"));
      
         }
