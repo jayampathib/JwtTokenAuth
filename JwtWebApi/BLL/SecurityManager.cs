@@ -1,6 +1,7 @@
 ﻿using FileServer.Model;
 using JwtDomain;
 using JwtDomain.Repo;
+using JwtWebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,11 @@ namespace JwtWebApi.BLL
     public class SecurityManager : ISecurityManager
     {
         private readonly IAppUserRepo _IAppUserRepo;
-        public SecurityManager(IAppUserRepo iAppUserRepo)
+        private readonly JwtSettings _settings = null;
+        public SecurityManager(IAppUserRepo iAppUserRepo, JwtSettings settings)
         {
             _IAppUserRepo = iAppUserRepo;
+            _settings = settings;
         }
         public AppUserAuthVM ValidateUser(string userName, string passWord)
         {

@@ -31,6 +31,9 @@ namespace JwtWebApi
             // Get JWT Token Settings from JwtSettings.json file
             JwtSettings settings = GetJwtSettings();
 
+            // Create singleton of JwtSettings
+            services.AddSingleton<JwtSettings>(settings);
+
             // Register Jwt as the Authentication service
             services.AddAuthentication(options =>
             {
