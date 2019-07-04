@@ -71,6 +71,8 @@ namespace JwtWebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
+
             app.UseMvc(opt => opt.MapRoute("Default", "{controller}/{action}/{id?}"));
      
         }
